@@ -1,0 +1,7 @@
+[ru]
+VP_TO_BEGIN = Чтобы начать общение,
+VP_NEED_YET = Вам необходимо еще %d фрагов
+
+[en]
+VP_TO_BEGIN = To begin communication,
+VP_NEED_YET = you need yet %d frags
