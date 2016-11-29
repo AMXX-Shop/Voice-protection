@@ -18,7 +18,7 @@ new g_HudSyncObj;
 new g_Frags[MAX_CLIENTS + 1];
 
 public plugin_init() {
-	register_plugin("Voice protection", "0.2", "AMXX.Shop");
+	register_plugin("Voice protection", "0.3", "AMXX.Shop");
 	register_dictionary("voice_protection.txt");
 	if(!has_vtc()) {
 		set_fail_state("VTC is required for plugin work!");
@@ -49,7 +49,6 @@ public client_putinserver(id) {
 }
 
 public client_disconnect(id) {
-	VTC_UnmuteClient(id);
 	remove_task(id);
 }
 
@@ -62,7 +61,7 @@ public GetStats(const id) {
 }
 
 public RGCBasePlayerKilledPost(const Victim, const Attacker) {
-	if(!is_user_connected(Attacker) || g_Frags[Attacker] >= MIN_FRAGS) {
+	if(!is_user_connected(Attacker) || g_Frags[Attacker] >= MIN_FRAGS || Victim == Attacker) {
 		return;
 	}
 	if(++g_Frags[Attacker] == MIN_FRAGS) {
